@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="robot_model"   default="hera_full"/>
+  <arg name="robot_model"            default="hera_full"/>
+  <arg name="robot_name"             default="robot"/>
 
-  <arg name="enable_rviz"   default="true"/>
-  <arg name="enable_gazebo" default="true"/>
+  <arg name="enable_rviz"            default="true"/>
+  <arg name="enable_gazebo"          default="true"/>
+  <arg name="enable_check_collision" default="true"/>
 
   <!-- use rviz -->
   <group if="$(arg enable_rviz)">
@@ -19,6 +21,7 @@
     <!-- load hera description -->
     <include file="$(find hera_description)/launch/load_description.launch">
       <arg name="robot_model" default="$(arg robot_model)"/>
+      <arg name="robot_name" 	default="$(arg robot_name)"/>
       <arg name="use_jsp_gui" default="false"/>
     </include>
   </group>
@@ -31,5 +34,13 @@
       <arg name="use_jsp_gui" default="true"/>
     </include>
   </group>
+
+  <group if="$(arg enable_check_collision)">
+    <node name="hera_check_collision" pkg="hera_description" type="hera_check_collision" output="screen">
+      <param name="world_name" value="default"/>
+      <param name="robot_name" value="$(arg robot_name)"/>
+    </node>
+  </group>
+
 
 </launch>
