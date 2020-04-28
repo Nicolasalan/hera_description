@@ -4,7 +4,7 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="big_box_mass"      value="1.00"/>
+  <xacro:property name="big_box_mass"      value="3.00"/>
   <xacro:property name="big_box_size_x"    value="0.30"/>
   <xacro:property name="big_box_size_y"    value="${base_size_y}"/>
   <xacro:property name="big_box_size_z"    value="0.55"/>
