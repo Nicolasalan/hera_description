@@ -27,6 +27,7 @@
   <xacro:include filename="$(find hera_description)/urdf/sensors/kinect_one.urdf.xacro"/>
 
   <!-- simulation -->
+  <xacro:include filename="$(find hera_description)/urdf/simulation/colors.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/control.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/base.gazebo.xacro"/>
   <xacro:include filename="$(find hera_description)/urdf/simulation/hokuyo_utm.gazebo.xacro" />
