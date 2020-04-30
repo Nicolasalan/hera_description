@@ -6,9 +6,15 @@ This package contains the URDF Description model and simulation of the [HERA rob
 
 ## Dependencies:
 * [ROS](https://www.ros.org/) (Melodic Morenia)
+  * [gazebo_ros](http://wiki.ros.org/gazebo_ros)
   * [roslaunch](http://wiki.ros.org/roslaunch)
   * [rviz](http://wiki.ros.org/rviz)
-* [Gazebo](http://gazebosim.org/) (9.0.0)
+  * [xacro](http://wiki.ros.org/xacro)
+  * [robot_state_publisher](http://wiki.ros.org/robot_state_publisher)
+  * [joint_state_publisher](http://wiki.ros.org/joint_state_publisher)
+  * [joint_state_publisher_gui](http://wiki.ros.org/joint_state_publisher)
+  * [controller_manager](http://wiki.ros.org/controller_manager)
+<!-- * [Gazebo](http://gazebosim.org/) (9.0.0) -->
 
 
 ## File structure:
@@ -157,6 +163,7 @@ All urdf code used to model the robot.
       |--hokuyo_utm.urdf.xacro
       |--kinect_one.urdf.xacro
     |--simulation
+      |--colors.gazebo.xacro
       |--control.gazebo.xacro
       |--base.gazebo.xacro
       |--asus_xtion.gazebo.xacro
@@ -166,6 +173,7 @@ All urdf code used to model the robot.
     |--commons.urdf.xacro
 ```
 
+* **colors**: Colors used on gazebo. 
 * **actuators**: Code used in actuators.
 * **sensors**: Code used in sensors.
 * **simulation**: Gazebo plugins used for simulation.

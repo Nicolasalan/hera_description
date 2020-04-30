@@ -6,3 +6,4 @@
 * add robot prefix (to allow multi robots)
 * add gazebo pictures
 * add yaml file with robot measures
+* add install script
