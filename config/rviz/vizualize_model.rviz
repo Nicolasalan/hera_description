@@ -4,9 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /TF1/Tree1
         - /hera1
         - /hera1/model1
-      Splitter Ratio: 0.5
+      Splitter Ratio: 0.6777777671813965
     Tree Height: 387
   - Class: rviz/Selection
     Name: Selection
@@ -18,15 +19,14 @@ Panels:
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
   - Class: rviz/Views
-    Expanded:
-      - /Current View1
+    Expanded: ~
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: base_scan_back
   - Class: rviz_plugin_tutorials/Teleop
     Name: Teleop
     Topic: ""
@@ -97,12 +97,12 @@ Visualization Manager:
               Alpha: 1
               Show Axes: false
               Show Trail: false
-            base_scan:
+            base_scan_back:
               Alpha: 1
               Show Axes: false
               Show Trail: false
               Value: true
-            base_scan_back:
+            base_scan_front:
               Alpha: 1
               Show Axes: false
               Show Trail: false
@@ -123,6 +123,11 @@ Visualization Manager:
               Show Trail: false
               Value: true
             base_wheelFR:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            head:
               Alpha: 1
               Show Axes: false
               Show Trail: false

@@ -4,7 +4,7 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="base_mass"      value="15.00"/>
+  <xacro:property name="base_mass"      value="15.0"/>
   <xacro:property name="base_size_x"    value="0.50"/>
   <xacro:property name="base_size_y"    value="0.30"/>
   <xacro:property name="base_size_z"    value="0.07"/>
@@ -14,19 +14,19 @@
   <xacro:property name="wheel_length"   value="0.07"/>
   <xacro:property name="wheel_gap"      value="0.02"/>
 
-  <xacro:property name="wheel_effort"   value="30" />
-  <xacro:property name="whell_velocity" value="0.5" />
+  <xacro:property name="wheel_effort"   value="30.0" />
+  <xacro:property name="wheel_velocity" value="0.50" />
 
   <xacro:macro name="wheel" params="name parent *origin *visual">
     <link name="${name}">
       <xacro:create_cylinder m="${wheel_mass}" r="${wheel_radius}" l="${wheel_length}">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
       </xacro:create_cylinder>
       <xacro:insert_block name="visual"/>
 
       <!-- wheel suport: used to reduce wheel contact in the floor -->
       <xacro:create_sphere m="${0.001}" r="${0.005}">
-        <origin xyz="0 -${wheel_radius} 0" rpy="0 0 0"/>
+        <origin xyz="0 0 -${wheel_radius}" rpy="0 0 0"/>
       </xacro:create_sphere>
       <!-- wheel suport -->
 
@@ -37,21 +37,9 @@
       <parent link="${parent}"/>
       <child link="${name}"/>
       <!-- enable when joint type is continuous -->
-      <!-- <axis xyz="0 0 1"/>  -->
+      <!-- <axis xyz="0 1 0"/> -->
       <!-- <limit effort="${wheel_effort}" velocity="${wheel_velocity}"/> -->
     </joint>
-
-    <!-- wheel suport: used to reduce wheel contact in the floor -->
-    <!-- <link name="${name}_support">
-      <xacro:create_sphere m="${0.001}" r="${0.005}">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </xacro:create_sphere>
-    </link>
-    <joint name="joint_${name}_to_${name}_support" type="fixed">
-      <origin xyz="0 -${wheel_radius} 0" rpy="0 0 0"/>
-      <parent link="${name}"/>
-      <child link="${name}_support"/>
-    </joint> -->
 
   </xacro:macro>
 
@@ -82,9 +70,9 @@
     <xacro:wheel name="${name}_wheelFR" parent="${name}">
       <origin
         xyz="${0.4*base_size_x} -${base_size_y/2+wheel_length/2+wheel_gap} 0.0"
-        rpy="${M_PI/2} 0 0" />
+        rpy="0 0 0" />
       <visual>
-        <origin xyz="0 0 0.045" rpy="0 -${M_PI/2} 0"/>
+        <origin xyz="0 -0.045 0" rpy=" 0 0 -${M_PI/2}"/>
         <material name="white"/>
         <geometry>
           <mesh filename="package://hera_description/meshes/wheelF.stl"/>
@@ -96,9 +84,9 @@
     <xacro:wheel name="${name}_wheelFL" parent="${name}">
       <origin
         xyz="${0.4*base_size_x} ${base_size_y/2+wheel_length/2+wheel_gap} 0.0"
-        rpy="${M_PI/2} 0 0" />
+        rpy="0 0 0" />
       <visual>
-        <origin xyz="0 0 -0.045" rpy="0 ${M_PI/2} 0"/>
+        <origin xyz="0 0.045 0" rpy=" 0 0 ${M_PI/2}"/>
         <material name="white"/>
         <geometry>
           <mesh filename="package://hera_description/meshes/wheelF.stl"/>
@@ -110,9 +98,9 @@
     <xacro:wheel name="${name}_wheelBR" parent="${name}">
       <origin
         xyz="-${0.4*base_size_x} -${base_size_y/2+wheel_length/2+wheel_gap} 0.0"
-        rpy="${M_PI/2} 0 0"/>
+        rpy="0 0 0"/>
       <visual>
-        <origin xyz="0 0 0.045" rpy="0 -${M_PI/2} 0"/>
+        <origin xyz="0 -0.045 0" rpy="0 0 -${M_PI/2}"/>
         <material name="white"/>
         <geometry>
           <mesh filename="package://hera_description/meshes/wheelB.stl"/>
@@ -124,9 +112,9 @@
     <xacro:wheel name="${name}_wheelBL" parent="${name}">
       <origin
         xyz="-${0.4*base_size_x} ${base_size_y/2+wheel_length/2+wheel_gap} 0.0"
-        rpy="${M_PI/2} 0 0"/>
+        rpy="0 0 0"/>
       <visual>
-        <origin xyz="0 0 -0.045" rpy="0 ${M_PI/2} 0"/>
+        <origin xyz="0 0.045 0" rpy="0 0 ${M_PI/2}"/>
         <material name="white"/>
         <geometry>
           <mesh filename="package://hera_description/meshes/wheelB.stl"/>
