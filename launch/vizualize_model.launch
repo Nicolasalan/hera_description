@@ -6,6 +6,7 @@
 
   <arg name="enable_rviz"            default="true"/>
   <arg name="enable_gazebo"          default="true"/>
+  <arg name="enable_teleop"          default="true"/>
   <arg name="enable_check_collision" default="true"/>
 
   <!-- use rviz -->
@@ -35,12 +36,18 @@
     </include>
   </group>
 
+  <!-- keyboard teleop -->
+  <group if="$(arg enable_teleop)" >
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
+      output="screen" launch-prefix="xterm -hold -e"/>
+  </group>
+
+  <!-- check collision -->
   <group if="$(arg enable_check_collision)">
     <node name="hera_check_collision" pkg="hera_description" type="hera_check_collision" output="screen">
       <param name="world_name" value="default"/>
       <param name="robot_name" value="$(arg robot_name)"/>
     </node>
   </group>
-
 
 </launch>
