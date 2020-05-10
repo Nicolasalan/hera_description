@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="hokuyo_utm_mass"   value="0.10"/>
+  <xacro:property name="hokuyo_utm_mass"   value="0.01"/>
   <xacro:property name="hokuyo_utm_size_x" value="0.06"/>
   <xacro:property name="hokuyo_utm_size_y" value="0.06"/>
   <xacro:property name="hokuyo_utm_size_z" value="0.09"/>

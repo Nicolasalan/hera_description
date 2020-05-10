@@ -93,25 +93,25 @@
   <!-- hokuyo_utm -->
   <xacro:gazebo_hokuyo_utm
     reference="base_scan_front"
-    update_rate="10"
+    update_rate="30"
     min_angle="-1.45"
     max_angle="1.45"/>
 
   <!-- hokuyo_urg -->
   <xacro:gazebo_hokuyo_urg
     reference="base_scan_back"
-    update_rate="10"
+    update_rate="30"
     min_angle="-1.45"
     max_angle="1.45" />
 
   <!-- xtion -->
   <xacro:gazebo_xtion
     reference="xtion"
-    update_rate="10"/>
+    update_rate="30"/>
 
   <!-- kinect_one -->
   <xacro:gazebo_kinect_one
     reference="kinect_one"
-    update_rate="10"/>
+    update_rate="30"/>
 
 </robot>

@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="xtion_mass"   value="0.10"/>
+  <xacro:property name="xtion_mass"   value="0.01"/>
   <xacro:property name="xtion_size_x" value="0.04"/>
   <xacro:property name="xtion_size_y" value="0.18"/>
   <xacro:property name="xtion_size_z" value="0.07"/>
