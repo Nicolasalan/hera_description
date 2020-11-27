@@ -12,6 +12,3 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 	${GAZEBO_INCLUDE_DIRS}
 )
-
-add_executable(hera_check_collision src/hera_check_collision.cpp)
-target_link_libraries(hera_check_collision ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
