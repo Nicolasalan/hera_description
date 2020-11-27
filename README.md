@@ -1,10 +1,10 @@
 # hera_description
 
-This package contains the URDF Description model and simulation of the [HERA robot (2020 version)](http://robofei.aquinno.com/athome/wp-content/uploads/2020/01/TDP2020ROBOFEI.pdf), developed by the [RoboFEI@home Team](http://robofei.aquinno.com/athome/) in the [FEI University Center](https://portal.fei.edu.br/).
+This package contains the URDF Description model and simulation of the [Home Environment Robot Assistant (HERA - 2020 version)](http://robofei.aquinno.com/athome/wp-content/uploads/2020/01/TDP2020ROBOFEI.pdf), developed by the [RoboFEI@home Team](http://robofei.aquinno.com/athome/) in the [FEI University Center](https://portal.fei.edu.br/).
 
 <figure align="center">
-<img src=doc/HERA.png>
-<p>O Robô HERA.</p>
+<img src=doc/hera2020.png>
+<p>The Home Robô HERA. Simulated (left) and real (right).</p>
 </figure>
 
 # Dependencies:
@@ -177,7 +177,7 @@ mkdir src
 4. Git clone this repository and install all dependencies.
 ```bash
 cd src
-git clone https://gitlab.com/fpimentel/hera/hera_description.git
+git clone https://github.com/Home-Environment-Robot-Assistant/hera_descriptionn.git
 sudo ./hera_description/install_dependencies.sh
 ```
 5. Compile you catkin workspace.
