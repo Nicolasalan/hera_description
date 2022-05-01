@@ -78,6 +78,13 @@
           <mesh filename="package://hera_description/meshes/torso.stl"/>
         </geometry>
       </visual>
+      <collision>
+        <origin xyz="0 0 -0.5" rpy="0 0 0"/>
+        <material name="dark_grey"/>
+        <geometry>
+          <mesh filename="package://hera_description/meshes/torso.stl"/>
+        </geometry>
+      </collision>
     </link>
 
     <!-- sensor plat -->
@@ -124,4 +131,67 @@
     </transmission>
 
   </xacro:macro>
+
+  <!--manip_support_link-->
+  <xacro:macro name="create_manip_support_link" params="parent">
+    <link name="manip_support_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hera_description/meshes/manip_meshes/manip_support.STL"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hera_description/meshes/manip_meshes/manip_support.STL"/>
+        </geometry>
+      </collision>
+      <xacro:inertial_manip_support_link mass="0.659217140679788"/>
+    </link>
+
+    <!--manip_support_joint--> 
+    <joint name="manip_support_joint" type="fixed">
+      <origin xyz="0.04525 0 0.0285" rpy="0 0 0" />
+      <parent link="${parent}" />
+      <child link="manip_support_link" />
+      <axis xyz="0 0 0" />
+      <limit lower="0" upper="0" effort="0" velocity="0" />
+    </joint>
+  </xacro:macro>
+
+  <!--backrest_link-->
+  <xacro:macro name="create_backrest_link" params="parent">
+    <link name="backrest_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hera_description/meshes/manip_meshes/backrest.STL"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hera_description/meshes/manip_meshes/backrest.STL"/>
+        </geometry>
+      </collision>
+      <xacro:inertial_backrest_link mass="0.0709912944888601"/>
+    </link>
+
+    <!--backrest_joint-->
+    <joint name="backrest_joint" type="fixed">
+      <origin xyz="0.028 0.0066709 0.053" rpy="0 0 0" />
+      <parent link="${parent}" />
+      <child link="backrest_link" />
+      <axis xyz="0 0 0" />
+      <limit effort="0" velocity="0" />
+    </joint>
+  </xacro:macro>
+
 </robot>

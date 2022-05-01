@@ -19,6 +19,7 @@
   <xacro:include filename="$(find hera_description)/urdf/actuators/base.urdf.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/actuators/torso.urdf.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/actuators/head.urdf.xacro" />
+  <xacro:include filename="$(find hera_description)/urdf/actuators/manipulator/manip.urdf.xacro" />
 
   <!-- sensors -->
   <xacro:include filename="$(find hera_description)/urdf/sensors/hokuyo_utm.urdf.xacro"/>
@@ -28,12 +29,12 @@
 
   <!-- simulation -->
   <xacro:include filename="$(find hera_description)/urdf/simulation/colors.gazebo.xacro" />
-  <xacro:include filename="$(find hera_description)/urdf/simulation/control.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/base.gazebo.xacro"/>
   <xacro:include filename="$(find hera_description)/urdf/simulation/hokuyo_utm.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/hokuyo_urg.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/asus_xtion.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/kinect_one.gazebo.xacro" />
+  <xacro:include filename="$(find hera_description)/urdf/simulation/manipulator.gazebo.xacro" />
 
 <!-- ####################################################################### -->
 <!-- ######################## robot parts ################################## -->
@@ -81,6 +82,17 @@
     <origin xyz="0.05 0 0.1" rpy="0 0 0" />
   </xacro:kinect_one>
 
+  <!--torso suporte-->
+  <xacro:create_manip_support_link
+    parent="torso"/>
+
+  <!--torso backrest-->
+  <xacro:create_backrest_link
+    parent="torso"/>
+
+  <!-- manip -->
+  <xacro:manipulator/>
+
 
 <!-- ####################################################################### -->
 <!-- ####################### gazebo extensions ##############################-->
@@ -113,5 +125,7 @@
   <xacro:gazebo_kinect_one
     reference="kinect_one"
     update_rate="30"/>
+    
+  <xacro:manip_transmission/>
 
 </robot>
