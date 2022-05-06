@@ -33,7 +33,7 @@
     </joint>
 
     <link name="${name}_depth"/>
-    <joint name="$joint_${name}_to_${name}_depth" type="fixed">
+    <joint name="joint_${name}_to_${name}_depth" type="fixed">
       <origin xyz="0.0 -0.049 0.0" rpy="0 0 0" />
       <parent link="${name}" />
       <child link="${name}_depth"/>

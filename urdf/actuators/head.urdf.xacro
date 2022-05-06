@@ -64,7 +64,8 @@
       <child link="${name}"/>
       <parent link="${parent}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="${head_effort}" velocity="${head_velocity}" lower="-${M_PI/2}" upper="${M_PI/2}"/>
+      <limit effort="${head_effort}" velocity="${head_velocity}" 
+        lower="${-M_PI/2}" upper="${M_PI/2}"/>
     </joint>
 
     <transmission name="tran_${name}">
