@@ -1,3 +1,5 @@
 #!/bin/bash
 
-apt-get install -y ros-melodic-joint-state-publisher-gui
+distribution=${1:-noetic} 
+
+apt-get install -y ros-$distribution-joint-state-publisher-gui
