@@ -35,6 +35,7 @@
   <xacro:include filename="$(find hera_description)/urdf/simulation/asus_xtion.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/kinect_one.gazebo.xacro" />
   <xacro:include filename="$(find hera_description)/urdf/simulation/manipulator.gazebo.xacro" />
+  <xacro:include filename="$(find hera_description)/urdf/simulation/control.gazebo.xacro" />
 
 <!-- ####################################################################### -->
 <!-- ######################## robot parts ################################## -->
@@ -100,8 +101,9 @@
 
   <!-- base -->
   <xacro:gazebo_base
-    reference="base"/>
-
+    reference="base"
+    update_rate="30"/>
+  
   <!-- hokuyo_utm -->
   <xacro:gazebo_hokuyo_utm
     reference="base_scan_front"
