@@ -13,7 +13,7 @@
 
   <!-- load robot_description -->
   <param name="robot_description"
-    command="$(find xacro)/xacro $(find hera_description)/robots/hera_full.urdf.xacro"/>
+    command="$(find xacro)/xacro $(find hera_description)/robots/$(arg robot_model).urdf.xacro"/>
 
   <!-- publishers -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
