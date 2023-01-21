@@ -9,8 +9,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     ####### DATA INPUT ##########
-    urdf_file = 'hera_full.urdf'
-
+    urdf_file = 'hera.urdf'
+    #xacro_file = "box_bot.xacro"
     package_description = "hera_description"
 
     ####### DATA INPUT END ##########
@@ -18,6 +18,7 @@ def generate_launch_description():
     robot_desc_path = os.path.join(get_package_share_directory(package_description), "urdf", urdf_file)
 
     # Robot State Publisher
+
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -29,5 +30,7 @@ def generate_launch_description():
 
     # create and return launch description object
     return LaunchDescription(
-          [robot_state_publisher_node]
+        [            
+            robot_state_publisher_node
+        ]
     )
