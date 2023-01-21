@@ -1,14 +1,27 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(hera_description)
+cmake_minimum_required(VERSION 3.8)
+project(my_box_bot_description)
 
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(urdf REQUIRED)
+find_package(xacro REQUIRED)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+install(
+  DIRECTORY
+    urdf
+    rviz
+    launch
+  DESTINATION
+    share/${PROJECT_NAME}/
 )
-find_package(gazebo REQUIRED)
 
-
-catkin_package()
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-  ${GAZEBO_INCLUDE_DIRS}
-)
+ament_package()
