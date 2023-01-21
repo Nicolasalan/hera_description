@@ -10,7 +10,7 @@ def generate_launch_description():
 
     ####### DATA INPUT ##########
     urdf_file = 'hera.urdf'
-    #xacro_file = "box_bot.xacro"
+
     package_description = "hera_description"
 
     ####### DATA INPUT END ##########
