@@ -1,0 +1,23 @@
+<launch>
+
+<!--######################## argument list #################################-->
+
+  <arg name="gui_teleop_keyboard" default="true"/>
+  <arg name="gui_rviz"            default="true"/>
+  <arg name="rviz_file"           default="$(find hera_description)/config/rviz/visualize_model.rviz"/>
+
+<!--#################### interface #########################################-->
+
+  <!-- keyboard teleop -->
+  <group if="$(arg gui_teleop_keyboard)">
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
+      output="screen" launch-prefix="xterm -hold -e"/>
+  </group>
+
+  <!-- rviz -->
+  <group if="$(arg gui_rviz)">
+		<node name="rviz" pkg="rviz" type="rviz" output="screen"
+		  args="-d $(arg rviz_file)" />
+  </group>
+
+</launch>

@@ -1,0 +1,90 @@
+<launch>
+  <arg name="usb_port"                default="/dev/opencm"/>
+  <arg name="dxl_baud_rate"           default="57600"/>
+
+  <arg name="use_moveit"              default="true"/>
+  <arg name="use_joint_state"         default="true"/>
+  <arg name="use_cmd_vel"             default="false"/>
+<!--######################## Base ##########################################-->
+
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+    <param name="port" value="/dev/base"/>
+    <param name="baud" value="38400"/>
+  </node>
+
+  <node name="robot_base_odom" pkg="hera_description" type="odom.py">
+    <rosparam command="load" file="$(find hera_description)/config/kinematics/kinematics.yaml"/>
+  </node>
+
+<!--######################## Laser #########################################-->
+  
+<!-- laser front -->
+  <node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node" >
+      <remap from="scan" to="base_scan_front" />
+      <param name="port" value="/dev/front_laser"/>
+      <param name="frame_id" value="base_scan_front"/>
+      <param name="min_ang" value="-1.45"/>
+      <param name="max_ang" value="1.45"/>
+    </node>
+
+<!-- laser back -->
+  <node name="hokuyo_node_back" pkg="hokuyo_node" type="hokuyo_node" >
+      <remap from="scan" to="base_scan_back" />
+      <param name="port" value="/dev/back_laser"/>
+      <param name="frame_id" value="base_scan_back"/>
+      <param name="min_ang" value="-1.45"/>
+      <param name="max_ang" value="1.45"/>
+  </node>
+
+
+<!--######################## Head #########################################-->
+
+  <param name="dynamixel_info" value="$(find hera_description)/config/manipulator/dynamixel_controller.yaml"/>
+
+  <node name="dynamixel_controller" pkg="dynamixel_workbench_controllers" type="dynamixel_workbench_controllers"
+        output="screen" args="$(arg usb_port) $(arg dxl_baud_rate)">
+    <param name="use_moveit"              value="$(arg use_moveit)"/>
+    <param name="use_joint_states_topic"  value="$(arg use_joint_state)"/>
+    <param name="use_cmd_vel_topic"       value="$(arg use_cmd_vel)"/>
+    <rosparam>
+      publish_period: 0.010
+      dxl_read_period: 0.010
+      dxl_write_period: 0.010
+      mobile_robot_config:                <!--this values will be set when 'use_cmd_vel' is true-->
+        seperation_between_wheels: 0.160  <!--default value is set by reference of TB3-->
+        radius_of_wheel: 0.033            <!--default value is set by reference of TB3-->
+    </rosparam>
+  </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list" subst_value="true">["head/joint_states"]</rosparam>
+  </node>
+
+<!--######################## Manip #########################################-->
+
+  <!-- Load configuration file -->
+  <rosparam file="$(find hera_control)/config/manipulator/manip_controller.yaml" command="load"/>
+
+  <!-- Start joint state controller -->
+  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" output="screen"
+    args="spawn joint_state_controller" respawn="false"/>
+
+  <!-- Start arm controller -->
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn arm_controller gripper_controller"/>
+
+  <!-- start fake calibration -->
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
+        args="pub /calibrated std_msgs/Bool true" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list" subst_value="true">["dynamixel_controller/joint_states"]</rosparam>
+  </node>
+
+<!--######################## Camera #########################################-->
+
+  <include file="$(find freenect_launch)/launch/freenect.launch" >
+    <arg name="camera" default="camera" />
+  </include>
+
+
+</launch>
